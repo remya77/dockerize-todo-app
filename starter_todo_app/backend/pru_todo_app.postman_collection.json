@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "b08b69e4-8fec-44d5-8bf2-e5eed3c7981c",
+		"name": "Pru Todo App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2548056"
+	},
+	"item": [
+		{
+			"name": "GET Todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE Todos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Take Diesel to the park\",\n    \"done\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Todo By Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/todos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"todos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Todo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/todos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Todo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Feed Dog\",\n    \"done\": true \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/todos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"todos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

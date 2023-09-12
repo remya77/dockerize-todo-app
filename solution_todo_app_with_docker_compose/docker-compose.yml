@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+  backend:
+    container_name: backend-container
+    restart: always
+    ports:
+        - '3001:3001'
+    depends_on:
+        - db
+    build:
+      dockerfile: Dockerfile
+      context: "./backend"
+    links:
+      - db 
+
+  db:
+    container_name: db-container
+    restart: always
+    tty: true
+    volumes:
+      - ./backend/db/data:/var/lib/postgresql/data
+    ports:
+        - '5432:5432'
+    build:
+      dockerfile: Dockerfile
+      context: "./backend/db"
+
+  frontend:
+    container_name: frontend-container
+    restart: always
+    ports:
+        - '3000:3000'
+    build:
+      dockerfile: Dockerfile
+      context: "./frontend"
+    depends_on:
+      - backend
+      - db
