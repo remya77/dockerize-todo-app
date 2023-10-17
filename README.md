@@ -72,7 +72,7 @@
     ENV POSTGRES_PASSWORD docker
     # This is the password we'll define for the Docker Postgres instance
 
-    ENV POSTGRES_DB todo_app
+    ENV POSTGRES_DB todo_app_db
     # This is what we'll name the database inside the container
 
     COPY todo.sql /docker-entrypoint-initdb.d/
@@ -87,7 +87,7 @@
 
     - `sudo docker exec -it db-container bash`
         - This will get us into the container itself
-    - `psql todo_app_db -h localhost -U postgres`
+    - `psql todo_app_db -U postgres`
         - This will enter the `psql` shell
     - `SELECT * FROM todos;`
         - Get all the todos
@@ -126,20 +126,20 @@
     npm-debug.log
     ```
 
-1. To build the image: `docker build . -t frontend`
+1. To build the image: `sudo docker build . -t frontend`
 
     - The `-t` flag lets us tag the image so it's easier to find.
 
-1. To run the image in a container: `docker run -d --name frontend-container -p 3000:3000 frontend`
+1. To run the image in a container: `sudo docker run -d --name frontend-container -p 3000:3000 frontend`
 
     - The `-p` flag defines the local port and the container port. These can be different.
     - The `--name` flag lets us name the container
     - `frontend` is the name of the image
     - To view the server logs remove the `-d` flag after `docker run`
 
-1. To start a container: `docker start frontend-container`
+1. To start a container: `sudo docker start frontend-container`
 
-1. To stop a running container: `docker stop frontend-container`
+1. To stop a running container: `sudo docker stop frontend-container`
 
 1. Go to `localhost:3000` in the browser. The good new is that our containers are working, however, you will probably see an error. That's because the Dockerized Express backend is having difficutly communicating with the Dockerized Postgres database (this has to do with how Docker handles `localhost`). We will fix this next!
 
@@ -208,17 +208,17 @@
     })
     ```
 
-1. Let's stop and remove all containers: `docker rm -f $(docker ps -a -q)`
+1. Let's stop and remove all containers: `sudo docker rm -f $(docker ps -a -q)`
 
-    - or try `docker ps -aq | xargs docker stop | xargs docker rm`
+    - or try `sudo docker ps -aq | xargs docker stop | xargs docker rm`
 
-1. `docker-compose up -d --build`
+1. `sudo docker-compose up -d --build`
 
 Now when you go into the React browser console you should see some todos:
 
 ![](./assets/react-console.png)
 
-1. Run `docker compose down` to stop the running containers.
+1. Run `sudo docker compose down` to stop the running containers.
 
 ## YOU DO
 
