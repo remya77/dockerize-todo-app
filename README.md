@@ -208,9 +208,11 @@
     })
     ```
 
-1. Let's stop and remove all containers: `sudo docker rm -f $(docker ps -a -q)`
+1. Let's stop and remove all containers: `sudo docker ps -a -q`
 
-    - or try `sudo docker ps -aq | xargs docker stop | xargs docker rm`
+<!-- 1. Let's stop and remove all containers: `sudo docker rm -f $(docker ps -a -q)` -->
+
+<!--     - or try `sudo docker ps -aq | xargs docker stop | xargs docker rm` -->
 
 1. `sudo docker-compose up -d --build`
 
