@@ -141,7 +141,7 @@
 
 1. To stop a running container: `sudo docker stop frontend-container`
 
-1. Go to `localhost:3000` in the browser. The good new is that our containers are working, however, you will probably see an error. That's because the Dockerized Express backend is having difficutly communicating with the Dockerized Postgres database (this has to do with how Docker handles `localhost`). We will fix this next!
+1. Go to `localhost:3000` in the browser. The good new is that our containers are working, however, you will probably see an error. That's because the Dockerized Express backend is having difficulty communicating with the Dockerized Postgres database (this has to do with how Docker handles `localhost`). We will fix this next!
 
     ![](./assets/react-error.png)
 
