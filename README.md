@@ -39,22 +39,22 @@
     npm-debug.log
     ```
 
-1. To build the image: `docker build . -t backend`
+1. To build the image: `sudo docker build . -t backend`
 
     - The `-t` flag lets us tag the image so it's easier to find.
 
-1. To run the image in a container: `docker run -d --name backend-container -p 3001:3001 backend`
+1. To run the image in a container: `sudo docker run -d --name backend-container -p 3001:3001 backend`
 
     - The `-p` flag defines the local port and the container port. These can be different.
     - The `--name` flag lets us name the container
     - `backend` is the name of the image
     - To view the server logs remove the `-d` flag (quite mode) after `docker run`
 
-1. You can run `docker ps` to check our the list of running containers.
+1. You can run `sudo docker ps` to check our the list of running containers.
 
-1. To stop the running container: `docker stop backend-container`. You can stop any other container with the `NAMES` or the first few characters of the `CONTAINER_ID`.
+1. To stop the running container: `sudo docker stop backend-container`. You can stop any other container with the `NAMES` or the first few characters of the `CONTAINER_ID`.
 
-1. To start the container: `docker start backend-container`. You can start any other container with the `NAMES` or the first few characters of the `CONTAINER_ID`.
+1. To start the container: `sudo docker start backend-container`. You can start any other container with the `NAMES` or the first few characters of the `CONTAINER_ID`.
 
 1. Go to `localhost:3001` in the browser. We should see the same "Hi There" message as running the app locally.
 
@@ -80,12 +80,12 @@
     # This will create the todos table and add some todos
     ```
 
-1. To build the image (if you're in the `backend/db` directory): `docker build . -t db`
-1. To run the image in a container: `docker run -d --name db-container -p 5432:5432 db`
+1. To build the image (if you're in the `backend/db` directory): `sudo docker build . -t db`
+1. To run the image in a container: `sudo docker run -d --name db-container -p 5432:5432 db`
 
 1. To confirm that we created the table and added some todos:
 
-    - `docker exec -it db-container bash`
+    - `sudo docker exec -it db-container bash`
         - This will get us into the container itself
     - `psql todo_app_db -h localhost -U postgres`
         - This will enter the `psql` shell
