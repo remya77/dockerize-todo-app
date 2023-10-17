@@ -3,7 +3,7 @@
 1. Make sure Docker is running and Postgres is turned off.
 
     - To stop postgres in the VM run `sudo service postgresql stop`
-        - We want to stop the VM version of Postgres since Docker will also want to use the dafault port (5432)   
+        - We want to stop the VM version of Postgresql since Docker will also want to use the default port (5432)   
     - To start Docker run `sudo service docker start`
 
 ## Dockerfile for Node Express Backend
