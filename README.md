@@ -220,7 +220,7 @@ Now when you go into the React browser console you should see some todos:
 
 ![](./assets/react-console.png)
 
-1. Run `sudo docker compose down` to stop the running containers.
+1. Run `sudo docker-compose down` to stop the running containers.
 
 ## YOU DO
 
