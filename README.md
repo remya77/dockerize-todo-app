@@ -174,7 +174,7 @@
             restart: always
             tty: true
             volumes:
-                - ./data:/var/lib/postgresql/data
+                - ./backend/db/data:/var/lib/postgresql/data
             ports:
                 - '5432:5432'
             build:
@@ -203,7 +203,7 @@
         user: 'postgres',
         host: 'db',
         database: 'todo_app_db',
-        password: 'postgres',
+        password: 'docker',
         port: 5432,
     })
     ```
