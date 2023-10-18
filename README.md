@@ -210,7 +210,9 @@
 
 1. Let's stop and remove all containers: `sudo docker ps -a -q`
 
-<!-- 1. Let's stop and remove all containers: `sudo docker rm -f $(docker ps -a -q)` -->
+    - If you're still haveing build issues it may help to remove all images: `sudo docker rmi $(sudo docker images -a -q)`
+
+<!-- 1. Let's stop and remove all containers: `sudo docker rm -f $(sudo docker ps -a -q)` -->
 
 <!--     - or try `sudo docker ps -aq | xargs docker stop | xargs docker rm` -->
 
