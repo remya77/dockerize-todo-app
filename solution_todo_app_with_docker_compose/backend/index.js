@@ -4,7 +4,7 @@ const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',
   host: 'db',
-  database: 'todo_app',
+  database: 'todo_app_db',
   password: 'docker',
   port: 5432,
 })
@@ -12,7 +12,6 @@ const pool = new Pool({
 const app = express();
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.send('Hi There')
