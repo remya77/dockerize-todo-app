@@ -4,7 +4,7 @@ FROM postgres
 ENV POSTGRES_PASSWORD docker
 # This is the password we'll define for the Docker Postgres instance
 
-ENV POSTGRES_DB todo_app
+ENV POSTGRES_DB todo_app_db
 # This is what we'll name the database inside the container
 
 COPY todo.sql /docker-entrypoint-initdb.d/
