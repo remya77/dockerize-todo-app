@@ -10,7 +10,7 @@
     RUN npm install
     # Install dependencies
 
-    EXPOSE 3001
+    EXPOSE 3000
     # The port we want the container to open (i.e. run on)
 
     CMD [ "npm", "run", "start" ]
