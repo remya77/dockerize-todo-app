@@ -208,7 +208,11 @@
     })
     ```
 
-1. Let's stop and remove all containers: `sudo docker stop $(sudo docker ps -a -q)`
+#### To stop and remove all containers
+
+1. Let's stop all running containers: `sudo docker stop $(sudo docker ps -a -q)`
+2. `sudo docker ps -a` will show all stopped containers.
+3. `sudo docker container prune` will remove all stopped containers.
 
     - If you're still having build issues it may help to remove all images: `sudo docker rmi $(sudo docker images -a -q)`
 
