@@ -145,7 +145,7 @@
 
     ![](./assets/react-error.png)
 
-## Docker Compose
+## Docker Compose Install
 
 #### 11-4-23 Install Update
 
@@ -162,6 +162,9 @@
 <!-- 1. To install Docker Compose, run `sudo pip install docker-compose`
 
     - [To troubleshoot, try this article](https://phoenixnap.com/kb/install-docker-compose-centos-7) -->
+
+
+## Use Docker Compose
 
 1. In the root of the `starter_todo_app` folder (where the `backend` and `frontend` folders are) run `touch docker-compose.yml`
 
