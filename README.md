@@ -147,9 +147,21 @@
 
 ## Docker Compose
 
-1. To install Docker Compose, run `sudo pip install docker-compose`
+#### 11-4-23 Install Update
 
-    - [To troubleshoot, try this article](https://phoenixnap.com/kb/install-docker-compose-centos-7)
+[Install Docker Compose Gist for Reference](https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9)
+
+1. `sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose`
+
+1. Fix permissions after download: `sudo chmod +x /usr/local/bin/docker-compose`
+
+1. Verify success: `docker-compose version`
+
+1. `sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose`
+
+<!-- 1. To install Docker Compose, run `sudo pip install docker-compose`
+
+    - [To troubleshoot, try this article](https://phoenixnap.com/kb/install-docker-compose-centos-7) -->
 
 1. In the root of the `starter_todo_app` folder (where the `backend` and `frontend` folders are) run `touch docker-compose.yml`
 
