@@ -39,7 +39,7 @@
     npm-debug.log
     ```
 
-1. To build the image: `sudo docker build . -t backend`
+1. To build the image: `sudo docker build . -t backend`. *Make sure you are running this build command from inside the `starter_todo_app/backend` folder.*
 
     - The `-t` flag lets us tag the image so it's easier to find.
 
@@ -80,7 +80,7 @@
     # This will create the todos table and add some todos
     ```
 
-1. To build the image (if you're in the `backend/db` directory): `sudo docker build . -t db`
+1. To build the image (if you're in the `backend/db` directory): `sudo docker build . -t db`. *Make sure you are running this build command from inside the `starter_todo_app/backend/db` folder.*
 1. To run the image in a container: `sudo docker run -d --name db-container -p 5432:5432 db`
 
 1. To confirm that we created the table and added some todos:
@@ -126,7 +126,7 @@
     npm-debug.log
     ```
 
-1. To build the image: `sudo docker build . -t frontend`
+1. To build the image: `sudo docker build . -t frontend`. *Make sure you are running this build command from inside the `starter_todo_app/frontend` folder.*
 
     - The `-t` flag lets us tag the image so it's easier to find.
 
