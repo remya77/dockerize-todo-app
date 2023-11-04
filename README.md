@@ -222,14 +222,16 @@
 
 1. `sudo docker-compose up -d --build`
 
-Now when you go into the React browser console you should see some todos:
+    Now when you go into the React browser console you should see some todos (your console may look different):
 
-![](./assets/react-console.png)
+    ![](./assets/react-console.png)
 
 1. Run `sudo docker-compose down` to stop the running containers.
 
 
 ## Debugging: To stop and remove all containers
+
+If you get a message saying that a container name is already taken, you may need to stop and remove a container or two.
 
 1. Let's stop all running containers: `sudo docker stop $(sudo docker ps -a -q)`
 2. `sudo docker ps -a` will show all stopped containers.
@@ -240,6 +242,8 @@ Now when you go into the React browser console you should see some todos:
 <!-- 1. Let's stop and remove all containers: `sudo docker rm -f $(sudo docker ps -a -q)` -->
 
 <!--     - or try `sudo docker ps -aq | xargs docker stop | xargs docker rm` -->
+
+#### Also, if you get a message that post 5432 is in use, make sure to stop the local Postgres engine in your VM: `sudo service postgresql stop`
 
 ## YOU DO
 
