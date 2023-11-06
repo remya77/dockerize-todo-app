@@ -85,10 +85,8 @@
 
 1. To confirm that we created the table and added some todos:
 
-    - `sudo docker exec -it db-container bash`
-        - This will get us into the container itself
-    - `psql todo_app_db -U postgres`
-        - This will enter the `psql` shell
+    - `sudo docker exec -it db-container psql todo_app_db -U postgres`
+        - This will get us into the container and enter the `psql` shell
     - `SELECT * FROM todos;`
         - Get all the todos
 
