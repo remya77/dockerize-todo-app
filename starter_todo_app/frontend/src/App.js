@@ -2,10 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
+const backend = "http://localhost:3001"
+
 const getTodos = async () => {
   let todos = await axios({
     method: 'get',
-    url: 'http://localhost:3001/api/todos',
+    url: `${backend}/api/todos`,
     responseType: 'json'
   })
   console.log(todos)      

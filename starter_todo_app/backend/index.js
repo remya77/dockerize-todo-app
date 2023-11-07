@@ -2,22 +2,24 @@ const express = require('express');
 const cors = require('cors');
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: 'postgres',
-  host: 'db',
-  database: 'todo_app_db',
-  password: 'docker',
-  port: 5432,
+    user: 'postgres',
+    host: 'db-container',
+    database: 'todo_app_db',
+    password: 'docker',
+    port: 5432,
 })
 
 const app = express();
 app.use(cors())
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send('Hi There')
+app.get('/', (req, response) => {
+    response.header('Access-Control-Allow-Origin', '*');
+    response.send('Hi There')
 });
 
 app.get('/api/todos', (request, response) => {
+    response.header('Access-Control-Allow-Origin', '*');
     pool.query('SELECT * FROM todos ORDER BY id ASC', (error, results) => {
         if (error) throw error;
 
@@ -27,6 +29,7 @@ app.get('/api/todos', (request, response) => {
 })
 
 app.post('/api/todos', (request, response) => {
+    response.header('Access-Control-Allow-Origin', '*');
     const { title, done } = request.body
 
     pool.query('INSERT INTO todos (title, done) VALUES ($1, $2) RETURNING *', [title, done], (error, results) => {
@@ -38,7 +41,7 @@ app.post('/api/todos', (request, response) => {
 
 app.get('/api/todos/:id', (request, response) => {
     const id = parseInt(request.params.id)
-  
+    response.header('Access-Control-Allow-Origin', '*');
     pool.query('SELECT * FROM todos WHERE id = $1', [id], (error, results) => {
         if (error) throw error;
         response.status(200).json(results.rows)
@@ -47,7 +50,7 @@ app.get('/api/todos/:id', (request, response) => {
 
 app.delete('/api/todos/:id', (request, response) => {
     const id = parseInt(request.params.id)
-  
+    response.header('Access-Control-Allow-Origin', '*');
     pool.query('DELETE FROM todos WHERE id = $1', [id], (error, results) => {
         if (error) throw error;
         response.status(204).send(`Todo deleted with ID: ${id}`)
@@ -57,14 +60,14 @@ app.delete('/api/todos/:id', (request, response) => {
 app.put('/api/todos/:id', (request, response) => {
     const id = parseInt(request.params.id)
     const { title, done } = request.body
-  
+    response.header('Access-Control-Allow-Origin', '*');
     pool.query(
-      'UPDATE todos SET title = $1, done = $2 WHERE id = $3',
-      [title, done, id],
-      (error, results) => {
-        if (error) throw error;
-        response.status(200).send(`Todo modified with ID: ${id}`)
-    })
+        'UPDATE todos SET title = $1, done = $2 WHERE id = $3',
+        [title, done, id],
+        (error, results) => {
+            if (error) throw error;
+            response.status(200).send(`Todo modified with ID: ${id}`)
+        })
 });
 
 
