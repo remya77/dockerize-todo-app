@@ -11,7 +11,7 @@
 
 We'll need to create a container network for your containers to talk to each other. Containers in the same container network can resolve each others' host names by their container name.
 
-`docker network create todo-app`
+`sudo docker network create todo-app`
 
 ## Dockerfile for Node Express Backend
 
