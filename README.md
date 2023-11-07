@@ -7,6 +7,12 @@
     - To start Docker run `sudo service docker start`
     - Clone down this repo and open it in VS Code
 
+## Create the Container network
+
+We'll need to create a container network for your containers to talk to each other. Containers in the same container network can resolve each others' host names by their container name.
+
+`docker network create todo-app`
+
 ## Dockerfile for Node Express Backend
 
 1. Note that inside the `starter_todo_app`, we've renamed the node express todo app folder `backend`.
