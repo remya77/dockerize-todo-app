@@ -3,7 +3,7 @@
 1. Make sure Docker is running and Postgres is turned off.
 
     - To stop postgres in the VM run `sudo service postgresql stop`
-        - We want to stop the VM version of Postgresql since Docker will also want to use the default port (5432)   
+        - We want to stop the VM version of Postgresql since Docker will also want to use the default port (5432)
     - To start Docker run `sudo service docker start`
     - Clone down this repo and open it in VS Code
 
@@ -12,55 +12,6 @@
 We'll need to create a container network for your containers to talk to each other. Containers in the same container network can resolve each others' host names by their container name.
 
 `sudo docker network create todo-app`
-
-## Dockerfile for Node Express Backend
-
-1. Note that inside the `starter_todo_app`, we've renamed the node express todo app folder `backend`.
-1. Create a `Dockerfile` in the `starter_todo_app/backend` folder: `touch Dockerfile`
-
-    ```dockerfile
-    FROM node:alpine
-    # This is the image we'll use as the base
-
-    WORKDIR /usr/src/app
-    # Create app directory
-
-    COPY . .
-    # Copy the app to the directory
-
-    RUN npm install
-    # Install dependencies
-
-    EXPOSE 3001
-    # The port we want the container to open (i.e. run on)
-
-    CMD [ "npm", "run", "start" ]
-    # The command to start the server inside the container      
-    ```
-
-1. Add a `.dockerignore` file for files and folders we don't want to copy into the container:
-
-    ```
-    node_modules
-    npm-debug.log
-    ```
-
-1. To build the image: `sudo docker build . -t backend`. *Make sure you are running this build command from inside the `starter_todo_app/backend` folder.*
-
-    - The `-t` flag lets us tag the image so it's easier to find.
-
-1. To run the image in a container: `sudo docker run -d --name backend-container -p 3001:3001 --network todo-app backend`
-
-    - The `-p` flag defines the local port and the container port. These can be different.
-    - The `--name` flag lets us name the container
-    - `backend` is the name of the image
-    - To view the server logs remove the `-d` flag (quite mode) after `docker run`
-
-1. You can run `sudo docker ps` to check out the list of running containers.
-
-2. Go to `localhost:3001` in the browser. We should see the same "Hi There" message as if running the app locally.
-
-    ![](./assets/hi-there.png)
 
 ## Dockerfile the Postgres Database
 
@@ -96,6 +47,56 @@ We'll need to create a container network for your containers to talk to each oth
 
     ![](./assets/docker-psql.png)
 
+## Dockerfile for Node Express Backend
+
+1. Note that inside the `starter_todo_app`, we've renamed the node express todo app folder `backend`.
+1. Create a `Dockerfile` in the `starter_todo_app/backend` folder: `touch Dockerfile`
+
+    ```dockerfile
+    FROM node:alpine
+    # This is the image we'll use as the base
+
+    WORKDIR /usr/src/app
+    # Create app directory
+
+    COPY . .
+    # Copy the app to the directory
+
+    RUN npm install
+    # Install dependencies
+
+    EXPOSE 3001
+    # The port we want the container to open (i.e. run on)
+
+    CMD [ "npm", "run", "start" ]
+    # The command to start the server inside the container
+    ```
+
+1. Add a `.dockerignore` file for files and folders we don't want to copy into the container:
+
+    ```
+    node_modules
+    npm-debug.log
+    ```
+
+1. To build the image: `sudo docker build . -t backend`. *Make sure you are running this build command from inside the `starter_todo_app/backend` folder.*
+
+    - The `-t` flag lets us tag the image so it's easier to find.
+
+1. To run the image in a container: `sudo docker run -d --name backend-container -p 3001:3001 --network todo-app backend`
+
+    - The `-p` flag defines the local port and the container port. These can be different.
+    - The `--name` flag lets us name the container
+    - `backend` is the name of the image
+    - To view the server logs remove the `-d` flag (quite mode) after `docker run`
+
+1. You can run `sudo docker ps` to check out the list of running containers.
+
+2. Go to `localhost:3001` in the browser. We should see the same "Hi There" message as if running the app locally.
+
+    ![](./assets/hi-there.png)
+
+
 ## Dockerfile for the React frontend
 
 1. We've renamed the React todo app folder `frontend`.
@@ -118,7 +119,7 @@ We'll need to create a container network for your containers to talk to each oth
     # The port we want the container to open (i.e. run on)
 
     CMD [ "npm", "run", "start" ]
-    # The command to start the server inside the container      
+    # The command to start the server inside the container
     ```
 
 1. Add a `.dockerignore` file for files and folders we don't want to copy into the container:
