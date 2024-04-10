@@ -1,11 +1,16 @@
-## Dockerize the Todo App
+# Dockerize the Todo App
 
-1. Make sure Docker is running and Postgres is turned off.
+1. Make sure Docker is running and Postgres is turned off. We want to stop the VM version of Postgresql since Docker will also want to use the default port (TCP/5432). To stop postgres in the VM run `sudo service postgresql stop`.
 
-    - To stop postgres in the VM run `sudo service postgresql stop`
-        - We want to stop the VM version of Postgresql since Docker will also want to use the default port (5432)
-    - To start Docker run `sudo service docker start`
-    - Clone down this repo and open it in VS Code
+2. Fork and clone this repo and open it in VS Code
+3. Stop all running instances of node:
+
+   ```sh
+   sudo kill -9 $(sudo lsof -t -i:3000)
+   sudo kill -9 $(sudo lsof -t -i:3001)
+   ```
+
+   If you get a `not enough arguments message` it likely means you do not have any instances of node running.
 
 ## Create the Container network
 
@@ -36,9 +41,9 @@ We'll need to create a container network for your containers to talk to each oth
 
 3. To build the image (if you're in the `backend/db` directory): `sudo docker build . -t db`. *Make sure you are running this build command from inside the `starter_todo_app/backend/db` folder.*
 
-5. To run the image in a container: `sudo docker run -d --name db-container -p 5432:5432 --network todo-app db`
+4. To run the image in a container: `sudo docker run -d --name db-container -p 5432:5432 --network todo-app db`
 
-6. To confirm that we created the table and added some todos:
+5. To confirm that we created the table and added some todos:
 
     - `sudo docker exec -it db-container psql todo_app_db -U postgres`
         - This will get us into the container and enter the `psql` shell
@@ -74,9 +79,11 @@ We'll need to create a container network for your containers to talk to each oth
 
 1. Add a `.dockerignore` file for files and folders we don't want to copy into the container:
 
-    ```
+    ```text
     node_modules
     npm-debug.log
+    db
+    core.*
     ```
 
 1. To build the image: `sudo docker build . -t backend`. *Make sure you are running this build command from inside the `starter_todo_app/backend` folder.*
@@ -92,15 +99,14 @@ We'll need to create a container network for your containers to talk to each oth
 
 1. You can run `sudo docker ps` to check out the list of running containers.
 
-2. Go to `localhost:3001` in the browser. We should see the same "Hi There" message as if running the app locally.
+1. Go to `localhost:3001` in the browser. We should see the same "Hi There" message as if running the app locally.
 
     ![](./assets/hi-there.png)
-
 
 ## Dockerfile for the React frontend
 
 1. We've renamed the React todo app folder `frontend`.
-1. Create a `Dockerfile`: `touch Dockerfile`
+2. Create a `Dockerfile`:
 
     ```dockerfile
     FROM node:alpine
@@ -122,25 +128,26 @@ We'll need to create a container network for your containers to talk to each oth
     # The command to start the server inside the container
     ```
 
-1. Add a `.dockerignore` file for files and folders we don't want to copy into the container:
+3. Add a `.dockerignore` file for files and folders we don't want to copy into the container:
 
-    ```
+    ```text
     node_modules
     npm-debug.log
+    core.*
     ```
 
-1. To build the image: `sudo docker build . -t frontend`. *Make sure you are running this build command from inside the `starter_todo_app/frontend` folder.*
+4. To build the image: `sudo docker build . -t frontend`. *Make sure you are running this build command from inside the `starter_todo_app/frontend` folder.*
 
     - The `-t` flag lets us tag the image so it's easier to find.
 
-1. To run the image in a container: `sudo docker run -d --name frontend-container -p 3000:3000 --network todo-app frontend`
+5. To run the image in a container: `sudo docker run -d --name frontend-container -p 3000:3000 --network todo-app frontend`
 
     - The `-p` flag defines the local port and the container port. These can be different.
     - The `--name` flag lets us name the container
     - `frontend` is the name of the image
     - To view the server logs remove the `-d` flag after `docker run`
 
-2. Go to `localhost:3000` in the browser.
+6. Go to `localhost:3000` in the browser.
 
 ## Debugging: To stop and remove all containers
 
@@ -152,11 +159,7 @@ If you get a message saying that a container name is already taken, you may need
 
     - If you're still having build issues it may help to remove all images: `sudo docker rmi $(sudo docker images -a -q)`
 
-<!-- 1. Let's stop and remove all containers: `sudo docker rm -f $(sudo docker ps -a -q)` -->
-
-<!--     - or try `sudo docker ps -aq | xargs docker stop | xargs docker rm` -->
-
-#### Also, if you get a message that post 5432 is in use, make sure to stop the local Postgres engine in your VM: `sudo service postgresql stop`
+*If you get a message that post 5432 is in use, make sure to stop the local Postgres engine in your VM: `sudo service postgresql stop`*
 
 ## YOU DO
 
