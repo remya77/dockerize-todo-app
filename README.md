@@ -163,4 +163,4 @@ If you get a message saying that a container name is already taken, you may need
 
 ## YOU DO
 
-Now that you have your containers orchestrated, try your Postman collection requests again.
+Now that you have your containers orchestrated, try your Postman collection requests again. You can find them here: `starter_todo_app/backend/pru_todo_app.postman_collection.json`
